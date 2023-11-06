@@ -1,10 +1,14 @@
-from datetime import date
 from todo import Todo
+from cli import CLI
+import sys
 
 
 def main():
-    today = date.today()
-    todo = Todo(today.strftime("%d/%m/%Y"), "14:00", "Clean house")
+    # print(" ".join(sys.argv[1:]).upper())
+
+    cli = CLI()
+    todo, date, time = cli.add()
+    todo = Todo(todo, date, time)
     todo.log()
 
 
