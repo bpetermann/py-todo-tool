@@ -5,6 +5,4 @@ class Todo:
         self.text = text
 
     def log(self):
-        print(self.date)
-        print(self.text)
-        print(self.time)
+        return f"{self.date}*{self.time}*{self.text}"
