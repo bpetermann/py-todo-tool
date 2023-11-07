@@ -1,10 +1,12 @@
 from datetime import datetime
 from todo import Todo
+from data import Data
 
 
 class CLI:
     def __init__(self):
         self.today = datetime.now()
+        self.data = Data()
 
     def start(self):
         self.controller(input("Press 'add' for add, 'q' for quit: "))
@@ -13,6 +15,8 @@ class CLI:
         match cmd:
             case "add":
                 self.add()
+            case "show":
+                self.show()
             case "q":
                 exit(1)
             case _:
@@ -29,9 +33,11 @@ class CLI:
         if not time:
             time = self.today.strftime("%H:%M:%S")
 
-        self.save(Todo(date, time, todo))
+        self.data.save(Todo(date, time, todo))
         self.start()
 
-    def save(self, todo):
-        with open("todo.txt", "a") as f:
-            f.write(f"{todo.log()}\n")
+    def show(self):
+        date = input("Due date (enter for today): ")
+        if not date:
+            date = self.today.strftime("%m/%d/%Y")
+        self.data.get(date)
