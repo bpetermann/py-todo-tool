@@ -29,7 +29,7 @@ class Data:
     def cleanup(self, date):
         future_todos = []
 
-        with open(self.file, "r") as f:
+        with open(self.file, "a+") as f:
             for line in f:
                 todo_date, *parts = line.strip().split("*")
                 if self.compare_dates(todo_date, date):
