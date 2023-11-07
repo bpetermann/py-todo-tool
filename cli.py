@@ -6,9 +6,12 @@ class CLI:
     def __init__(self):
         self.today = datetime.now()
         self.data = Data()
+        self.clean = False
 
     def start(self):
-        self.controller(input("Press 'add' for add, 'q' for quit: "))
+        if not self.clean:
+            self.cleanup()
+        self.controller(input("Enter 'add' for add, 'show' for show, 'q' for quit: "))
 
     def controller(self, cmd):
         match cmd:
@@ -37,6 +40,12 @@ class CLI:
 
     def show(self):
         date = input("Due date (enter for today): ")
+
         if not date:
             date = self.today.strftime("%m/%d/%Y")
+
         self.data.get(date)
+
+    def cleanup(self):
+        self.data.cleanup(self.today.strftime("%m/%d/%Y"))
+        self.clean = True

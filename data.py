@@ -19,3 +19,23 @@ class Data:
         todo = Todo(date, time, todo)
         with open(self.file, "a") as f:
             f.write(f"{todo.log()}\n")
+
+    def compare_dates(self, date1, date2):
+        date1_parts = date1.split("/")
+        date2_parts = date2.split("/")
+        return date1_parts >= date2_parts
+
+    def cleanup(self, date):
+        future_todos = []
+
+        with open(self.file, "r") as f:
+            for line in f:
+                todo_date, *parts = line.strip().split("*")
+                if self.compare_dates(todo_date, date):
+                    future_todos.append((todo_date, *parts))
+
+        with open(self.file, "w") as f:
+            f.truncate(0)
+
+        for todo in future_todos:
+            self.save(*todo)
