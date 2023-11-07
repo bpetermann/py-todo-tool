@@ -13,7 +13,7 @@ class Controller:
     def start(self):
         if not self.clean:
             self.cleanup()
-        self.controller(input("Enter 'add' for add, 'show' for show, 'q' for quit: "))
+        self.controller(input("Enter command (enter 'help' for help): "))
 
     def controller(self, cmd):
         match cmd:
@@ -21,14 +21,18 @@ class Controller:
                 self.add()
             case "show":
                 self.show()
+            case "d":
+                self.delete()
+            case "help":
+                self.help()
             case "q":
                 exit(1)
             case _:
                 self.add()
 
     def add(self):
-        todo = input("Enter to do: ")
-        date = input("Due date (enter for today): ")
+        todo = input("Enter task: ")
+        date = input("Due date (m/d/y): ")
         time = input("Due time: ")
 
         if not date:
@@ -37,17 +41,27 @@ class Controller:
         if not time:
             time = self.today.strftime("%H:%M:%S")
 
-        self.data.save(date, time, todo)
+        self.view.added_todo(self.data.save(date, time, todo))
         self.start()
 
     def show(self):
-        date = input("Due date (enter for today): ")
+        date = input("Due date (m/d/y): ")
 
         if not date:
             date = self.today.strftime("%m/%d/%Y")
 
-        self.view.output(date, self.data.get(date))
+        self.view.all_todos(date, self.data.get(date))
+        self.start()
 
     def cleanup(self):
         self.data.cleanup(self.today.strftime("%m/%d/%Y"))
         self.clean = True
+
+    def delete(self):
+        task = input("Enter completed task: ")
+        self.data.delete(task)
+        self.start()
+
+    def help(self):
+        self.view.help()
+        self.start()
