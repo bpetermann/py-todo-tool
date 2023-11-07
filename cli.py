@@ -1,5 +1,4 @@
 from datetime import datetime
-from todo import Todo
 from data import Data
 
 
@@ -33,7 +32,7 @@ class CLI:
         if not time:
             time = self.today.strftime("%H:%M:%S")
 
-        self.data.save(Todo(date, time, todo))
+        self.data.save(date, time, todo)
         self.start()
 
     def show(self):

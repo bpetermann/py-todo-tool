@@ -1,14 +1,21 @@
+from todo import Todo
+
+
 class Data:
     def __init__(self):
         self.file = "todo.txt"
 
     def get(self, date):
+        output = []
         with open(self.file) as f:
-            input = f.read().split("\n")
-            if len(input):
-                for line in input:
-                    print(f"{line.split('*')[1]} - {line.split('*')[2]}")
+            for line in f:
+                parts = line.strip().split("*")
+                if len(parts) >= 3 and date == parts[0]:
+                    output.append((parts[1], parts[2]))
+        output.sort(key=lambda tup: tup[0])
+        print(output)
 
-    def save(self, todo):
+    def save(self, date, time, todo):
+        todo = Todo(date, time, todo)
         with open(self.file, "a") as f:
             f.write(f"{todo.log()}\n")
