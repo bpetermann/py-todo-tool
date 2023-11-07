@@ -13,7 +13,7 @@ class Data:
                 if len(parts) >= 3 and date == parts[0]:
                     output.append((parts[1], parts[2]))
         output.sort(key=lambda tup: tup[0])
-        print(output)
+        return output
 
     def save(self, date, time, todo):
         todo = Todo(date, time, todo)

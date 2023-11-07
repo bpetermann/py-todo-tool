@@ -1,11 +1,13 @@
 from datetime import datetime
+from view import View
 from data import Data
 
 
-class CLI:
+class Controller:
     def __init__(self):
         self.today = datetime.now()
         self.data = Data()
+        self.view = View()
         self.clean = False
 
     def start(self):
@@ -44,7 +46,7 @@ class CLI:
         if not date:
             date = self.today.strftime("%m/%d/%Y")
 
-        self.data.get(date)
+        self.view.output(date, self.data.get(date))
 
     def cleanup(self):
         self.data.cleanup(self.today.strftime("%m/%d/%Y"))

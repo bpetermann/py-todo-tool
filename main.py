@@ -1,9 +1,9 @@
-from cli import CLI
+from controller import Controller
 
 
 def main():
-    cli = CLI()
-    cli.start()
+    controller = Controller()
+    controller.start()
 
 
 if __name__ == "__main__":
