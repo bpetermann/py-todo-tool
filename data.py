@@ -1,9 +1,12 @@
 from todo import Todo
+import os.path
 
 
 class Data:
     def __init__(self):
         self.__file = "todo.txt"
+        if not os.path.isfile(self.__file):
+            open(self.__file, "x")
 
     def get(self, date):
         output = []
