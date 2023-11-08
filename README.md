@@ -27,9 +27,9 @@ Explore Available Commands:
 After launching the application, type "h" to view a list of available commands and their descriptions.
 
 
-- **"h"**: This will help you get familiar with how to interact with the tool.
-- **"add"**: You can add new tasks to your todo list using the "add" command. Simply follow the prompts to provide a description and due date for your task.
-- **"d"**: Use the "delete" command to remove tasks from your todo list. You will be prompted to select the task you want to delete.
-- **"show"**: The "show" command allows you to view tasks for a specific day. You will be prompted to enter a date, and the tool will display all tasks due on that day.
+- The **"h"** command will help you get familiar with how to interact with the tool.
+-  You can add new tasks to your todo list using the **"add"** command. Simply follow the prompts to provide a description and due date for your task.
+- Use the **"delete"** command to remove tasks from your todo list. You will be prompted to select the task you want to delete.
+- The **"show"** command allows you to view tasks for a specific day. You will be prompted to enter a date, and the tool will display all tasks due on that day.
 
 Automatic Cleanup: py-todo-tool automatically removes old tasks upon program startup, so you don't have to worry about clutter in your todo list.
