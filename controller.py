@@ -5,27 +5,34 @@ from data import Data
 
 class Controller:
     def __init__(self):
-        self.today = datetime.now()
-        self.data = Data()
-        self.view = View()
-        self.clean = False
+        self.__today = datetime.now()
+        self.__data = Data()
+        self.__view = View()
+        self.__clean = False
+
+        # Commands
+        self.__cmd_add = "add"
+        self.__cmd_show = "show"
+        self.__cmd_delete = "d"
+        self.__cmd_help = "h"
+        self.__cmd_quit = "q"
 
     def start(self):
-        if not self.clean:
+        if not self.__clean:
             self.cleanup()
-        self.controller(input("Enter command (enter 'help' for help): "))
+        self.controller(input(f"Enter command (enter '{self.__cmd_help}' for help): "))
 
     def controller(self, cmd):
         match cmd:
-            case "add":
+            case self.__cmd_add:
                 self.add()
-            case "show":
+            case self.__cmd_show:
                 self.show()
-            case "d":
+            case self.__cmd_delete:
                 self.delete()
-            case "help":
+            case self.__cmd_help:
                 self.help()
-            case "q":
+            case self.__cmd_quit:
                 exit(1)
             case _:
                 self.add()
@@ -36,32 +43,32 @@ class Controller:
         time = input("Due time: ")
 
         if not date:
-            date = self.today.strftime("%m/%d/%Y")
+            date = self.__today.strftime("%m/%d/%Y")
 
         if not time:
-            time = self.today.strftime("%H:%M:%S")
+            time = self.__today.strftime("%H:%M:%S")
 
-        self.view.added_todo(self.data.save(date, time, todo))
+        self.__view.added_todo(self.__data.save(date, time, todo))
         self.start()
 
     def show(self):
         date = input("Due date (m/d/y): ")
 
         if not date:
-            date = self.today.strftime("%m/%d/%Y")
+            date = self.__today.strftime("%m/%d/%Y")
 
-        self.view.all_todos(date, self.data.get(date))
+        self.__view.all_todos(date, self.__data.get(date))
         self.start()
 
     def cleanup(self):
-        self.data.cleanup(self.today.strftime("%m/%d/%Y"))
-        self.clean = True
+        self.__data.cleanup(self.__today.strftime("%m/%d/%Y"))
+        self.__clean = True
 
     def delete(self):
         task = input("Enter completed task: ")
-        self.data.delete(task)
+        self.__data.delete(task)
         self.start()
 
     def help(self):
-        self.view.help()
+        self.__view.help()
         self.start()

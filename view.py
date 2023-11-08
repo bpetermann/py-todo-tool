@@ -9,8 +9,9 @@ class View:
         cprint("----------", "blue")
 
     def added_todo(self, todo):
-        cprint("Todo added:", "blue")
+        cprint("Todo added:", "green")
         print("\n".join(todo.log().split("*")))
+        cprint("----------", "green")
 
     def help(self):
         help_text = """

@@ -1,8 +1,8 @@
 class Todo:
     def __init__(self, date, time, text):
-        self.date = date
-        self.time = time
-        self.text = text
+        self.__date = date
+        self.__time = time
+        self.__text = text
 
     def log(self):
-        return f"{self.date}*{self.time}*{self.text}"
+        return f"{self.__date}*{self.__time}*{self.__text}"
