@@ -39,20 +39,20 @@ class Controller:
 
     def add(self):
         todo = input("Enter task: ")
-        date = input("Due date (m/d/y): ")
-        time = input("Due time: ")
+        date = input("Due date (mm/dd/yyyy): ")
+        time = input("Due time(hh/mm): ")
 
         if not date:
             date = self.__today.strftime("%m/%d/%Y")
 
         if not time:
-            time = self.__today.strftime("%H:%M:%S")
+            time = self.__today.strftime("%H:%M")
 
         self.__view.added_todo(self.__data.save(date, time, todo))
         self.start()
 
     def show(self):
-        date = input("Due date (m/d/y): ")
+        date = input("Date (mm/dd/yyyy): ")
 
         if not date:
             date = self.__today.strftime("%m/%d/%Y")
