@@ -46,15 +46,20 @@ class Data:
 
     def delete(self, todo):
         future_todos = []
+        deleted_todo = False
 
         with open(self.__file, "r") as f:
             for line in f:
                 parts = line.strip().split("*")
                 if todo != parts[2]:
                     future_todos.append((parts))
+                else:
+                    deleted_todo = Todo(*parts)
 
         with open(self.__file, "w") as f:
             f.truncate(0)
 
         for todo in future_todos:
             self.save(*todo)
+
+        return deleted_todo

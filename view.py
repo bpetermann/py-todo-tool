@@ -9,7 +9,12 @@ class View:
         cprint("----------", "blue")
 
     def added_todo(self, todo):
-        cprint("Todo added:", "green")
+        cprint("added:", "magenta")
+        print("\n".join(todo.log().split("*")))
+        cprint("----------", "magenta")
+
+    def deleted_todo(self, todo):
+        cprint("completed:", "green")
         print("\n".join(todo.log().split("*")))
         cprint("----------", "green")
 

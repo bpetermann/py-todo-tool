@@ -20,7 +20,7 @@ class Controller:
     def start(self):
         if not self.__clean:
             self.cleanup()
-        self.controller(input(f"Enter command (enter '{self.__cmd_help}' for help): "))
+        self.controller(input(f"enter command (enter '{self.__cmd_help}' for help): "))
 
     def controller(self, cmd):
         match cmd:
@@ -38,9 +38,9 @@ class Controller:
                 self.add()
 
     def add(self):
-        todo = input("Enter task: ")
-        date = input("Due date (mm/dd/yyyy): ")
-        time = input("Due time(hh/mm): ")
+        todo = input("enter task: ")
+        date = input(f"due date: ({self.__today.strftime('%m/%d/%Y')}) ")
+        time = input(f"due time: ({self.__today.strftime('%H:%M')}) ")
 
         if not date:
             date = self.__today.strftime("%m/%d/%Y")
@@ -52,7 +52,7 @@ class Controller:
         self.start()
 
     def show(self):
-        date = input("Date (mm/dd/yyyy): ")
+        date = input(f"date: ({self.__today.strftime('%m/%d/%Y')}) ")
 
         if not date:
             date = self.__today.strftime("%m/%d/%Y")
@@ -65,8 +65,8 @@ class Controller:
         self.__clean = True
 
     def delete(self):
-        task = input("Enter completed task: ")
-        self.__data.delete(task)
+        task = input("enter completed task: ")
+        self.__view.deleted_todo(self.__data.delete(task))
         self.start()
 
     def help(self):
