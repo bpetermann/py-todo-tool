@@ -1,9 +1,11 @@
-# py-todo-tool
+## Python Todo tool
 
-py-todo-tool is a straightforward command-line todo application that allows you to manage your tasks efficiently. 
-You can easily add and organize your todos. All tasks are stored into a .txt file, that get's automatically generated when you first run the programm. Tasks that are one day or more old are automatically deleted
+- Python Todo tool is a straightforward command-line todo application that allows you to manage your tasks efficiently
+- You can easily add and organize your todos
+- All tasks are stored into a .txt file, that get's automatically generated when you first run the programm
+- Tasks that are one day or more old are automatically deleted
 
-## Getting Started
+### Getting Started
 
 Follow these steps to get started:
 
@@ -13,7 +15,7 @@ cd py-todo-tool
 pip install -r requirements.txt
 ```
 
-## Usage
+### Usage
 
 To start using py-todo-tool, open your terminal and navigate to the project directory. Then, run the following commmand to start the application:
 
@@ -33,3 +35,12 @@ After launching the application, type "h" to view a list of available commands a
 - The **"show"** command allows you to view tasks for a specific day. You will be prompted to enter a date, and the tool will display all tasks due on that day.
 
 Automatic Cleanup: py-todo-tool automatically removes old tasks upon program startup, so you don't have to worry about clutter in your todo list.
+
+
+### Unit tests
+
+Run tests with 
+
+```shell
+python tests.py
+```
