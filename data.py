@@ -1,3 +1,4 @@
+from helper import compare_dates
 from todo import Todo
 import os.path
 
@@ -24,10 +25,10 @@ class Data:
             f.write(f"{todo.log()}\n")
         return todo
 
-    def compare_dates(self, date1, date2):
-        date1_parts = date1.split("/")
-        date2_parts = date2.split("/")
-        return date1_parts >= date2_parts
+    # def compare_dates(self, date1, date2):
+    #     date1_parts = date1.split("/")
+    #     date2_parts = date2.split("/")
+    #     return date1_parts >= date2_parts
 
     def cleanup(self, date):
         future_todos = []
@@ -35,7 +36,7 @@ class Data:
         with open(self.__file, "r") as f:
             for line in f:
                 todo_date, *parts = line.strip().split("*")
-                if self.compare_dates(todo_date, date):
+                if compare_dates(todo_date, date):
                     future_todos.append((todo_date, *parts))
 
         with open(self.__file, "w") as f:
