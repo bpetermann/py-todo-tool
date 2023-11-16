@@ -4,10 +4,11 @@ import os.path
 
 
 class Data:
-    def __init__(self):
+    def init(self):
         self.__file = "todo.txt"
         if not os.path.isfile(self.__file):
-            open(self.__file, "x")
+            file_object = open(self.__file, "x")
+            file_object.close()
 
     def get(self, date):
         output = []
@@ -24,11 +25,6 @@ class Data:
         with open(self.__file, "a", encoding="utf-8") as f:
             f.write(f"{todo.log()}\n")
         return todo
-
-    # def compare_dates(self, date1, date2):
-    #     date1_parts = date1.split("/")
-    #     date2_parts = date2.split("/")
-    #     return date1_parts >= date2_parts
 
     def cleanup(self, date):
         future_todos = []
